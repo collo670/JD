@@ -1,9 +1,9 @@
 const CACHE_NAME = 'jensar-v1';
 const ASSETS_TO_CACHE = [
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/manifest.json'
+  './index.html',
+  './styles.css',
+  './app.js',
+  './manifest.json'
 ];
 
 // Install event
