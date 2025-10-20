@@ -54,7 +54,7 @@
                 </svg>
                 Dashboard
             </a>
-            <a href="./index.html" class="nav-item" data-tab="inventory">
+            <a href="index.html" class="nav-item" data-tab="inventory">
                 <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                 </svg>
@@ -373,6 +373,24 @@
         </div>
     </footer>
 
-    <script src="/app.js"></script>
+    <!-- Load Chart.js directly -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+        // Ensure Chart.js is loaded before app.js
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded, initializing app...');
+            // Force a small delay to ensure Chart.js is fully loaded
+            setTimeout(function() {
+                // Check if Chart.js is loaded
+                if (typeof Chart === 'undefined') {
+                    console.error('Chart.js not loaded, loading it again...');
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js';
+                    document.head.appendChild(script);
+                }
+            }, 100);
+        });
+    </script>
+    <script src="./app.js"></script>
 </body>
 </html>

@@ -425,6 +425,14 @@ main {
 .chart-content {
     height: 300px;
     position: relative;
+    width: 100%;
+}
+
+/* Ensure canvas takes full size of container */
+#salesChart {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
 }
 
 /* ============================================
