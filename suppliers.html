@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers Management - JENSAR Distillery</title>
+    <meta name="description" content="Manage supplier relationships and information">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#8B5CF6">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <svg class="logo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+                <span>JENSAR Distillery</span>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" id="offline-btn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </button>
+                <a href="/index.html" class="header-btn" title="Back to Dashboard">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="page-header">
+            <h1 style="font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem;">Suppliers Management</h1>
+            <p style="color: #6B7280; margin-bottom: 1.5rem;">Manage your supplier relationships and track grain and barrel purchases</p>
+        </div>
+
+        <!-- Suppliers Header -->
+        <div class="inventory-header">
+            <h2 style="font-size: 1.5rem; font-weight: 700; color: #111827;">Active Suppliers</h2>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <div class="search-container">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search suppliers..." aria-label="Search suppliers">
+                </div>
+                <button class="btn btn-primary" aria-label="Add new supplier">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Add Supplier
+                </button>
+            </div>
+        </div>
+
+        <!-- Suppliers Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Supplier Name</th>
+                        <th>Contact</th>
+                        <th>Specialty</th>
+                        <th>Status</th>
+                        <th>Rating</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Highland Grains Co.</td>
+                        <td>+44-123-456-7890</td>
+                        <td><span class="badge badge-purple">Barley & Grains</span></td>
+                        <td><span class="badge badge-success">Active</span></td>
+                        <td>★★★★★</td>
+                        <td class="table-actions">
+                            <button aria-label="Edit Highland Grains Co.">Edit</button>
+                            <button aria-label="Delete Highland Grains Co.">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Oak Barrel Specialists</td>
+                        <td>+44-987-654-3210</td>
+                        <td><span class="badge badge-green">Oak Barrels</span></td>
+                        <td><span class="badge badge-success">Active</span></td>
+                        <td>★★★★☆</td>
+                        <td class="table-actions">
+                            <button aria-label="Edit Oak Barrel Specialists">Edit</button>
+                            <button aria-label="Delete Oak Barrel Specialists">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Yeast Laboratories Ltd</td>
+                        <td>+44-555-666-7777</td>
+                        <td><span class="badge badge-blue">Yeast Culture</span></td>
+                        <td><span class="badge badge-success">Active</span></td>
+                        <td>★★★★★</td>
+                        <td class="table-actions">
+                            <button aria-label="Edit Yeast Laboratories Ltd">Edit</button>
+                            <button aria-label="Delete Yeast Laboratories Ltd">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Premium Water Sources</td>
+                        <td>+44-222-333-4444</td>
+                        <td><span class="badge badge-purple">Water & Minerals</span></td>
+                        <td><span class="badge badge-warning">Inactive</span></td>
+                        <td>★★★☆☆</td>
+                        <td class="table-actions">
+                            <button aria-label="Edit Premium Water Sources">Edit</button>
+                            <button aria-label="Delete Premium Water Sources">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Packaging Solutions Inc</td>
+                        <td>+44-888-999-0000</td>
+                        <td><span class="badge badge-green">Bottles & Labels</span></td>
+                        <td><span class="badge badge-success">Active</span></td>
+                        <td>★★★★☆</td>
+                        <td class="table-actions">
+                            <button aria-label="Edit Packaging Solutions Inc">Edit</button>
+                            <button aria-label="Delete Packaging Solutions Inc">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Supplier Modal -->
+    <div id="supplier-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Supplier</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="supplier-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="supplier-name">Supplier Name *</label>
+                        <input type="text" id="supplier-name" required placeholder="e.g., Highland Grains Co.">
+                    </div>
+                    <div class="form-group">
+                        <label for="supplier-contact">Contact *</label>
+                        <input type="text" id="supplier-contact" required placeholder="e.g., +44-123-456-7890">
+                    </div>
+                    <div class="form-group">
+                        <label for="supplier-specialty">Specialty *</label>
+                        <select id="supplier-specialty" required>
+                            <option value="Barley & Grains">Barley & Grains</option>
+                            <option value="Oak Barrels">Oak Barrels</option>
+                            <option value="Yeast Culture">Yeast Culture</option>
+                            <option value="Water & Minerals">Water & Minerals</option>
+                            <option value="Bottles & Labels">Bottles & Labels</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="supplier-status">Status *</label>
+                        <select id="supplier-status" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="supplier-rating">Rating *</label>
+                        <select id="supplier-rating" required>
+                            <option value="★★★★★">★★★★★ (5 stars)</option>
+                            <option value="★★★★☆">★★★★☆ (4 stars)</option>
+                            <option value="★★★☆☆">★★★☆☆ (3 stars)</option>
+                            <option value="★★☆☆☆">★★☆☆☆ (2 stars)</option>
+                            <option value="★☆☆☆☆">★☆☆☆☆ (1 star)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal(document.getElementById('supplier-modal'))">Cancel</button>
+                    <button type="submit" class="btn-submit">Save Supplier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2024 JENSAR Distillery. All rights reserved.</p>
+                <div class="offline-indicator">
+                    <span>Offline Mode Ready</span>
+                    <svg class="offline-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/app.js"></script>
+</body>
+</html>

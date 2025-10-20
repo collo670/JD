@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JENSAR Distillery - Inventory Management</title>
+    <meta name="description" content="Complete distillery inventory management system with offline support">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#8B5CF6">
+    <link rel="apple-touch-icon" href="https://placehold.co/192x192/8B5CF6/white?text=JD">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Minimal inline styles - see styles.css for full stylesheet */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <svg class="logo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+                <span>JENSAR Distillery</span>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" id="offline-btn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </button>
+                <button class="header-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+                    <svg class="theme-icon theme-icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg class="theme-icon theme-icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 118.646 3.646a7 7 0 1011.708 11.708z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <br>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content" id="nav-container">
+            <a href="#" class="nav-item active" data-tab="dashboard">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                Dashboard
+            </a>
+            <a href="#" class="nav-item" data-tab="inventory">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                </svg>
+                Inventory
+            </a>
+            <a href="suppliers.html" class="nav-item" data-tab="suppliers">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Suppliers
+            </a>
+            <a href="sales.html" class="nav-item" data-tab="sales">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Sales
+            </a>
+            <a href="purchase.html" class="nav-item" data-tab="purchase">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+                Purchase
+            </a>
+            <a href="production.html" class="nav-item" data-tab="production">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+                Production
+            </a>
+            <a href="reports.html" class="nav-item" data-tab="reports">
+                <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Reports
+            </a>
+        </div>
+    </nav>
+
+    <br><br>  
+
+    <!-- Main Content -->
+    <main class="container">
+        <div id="content">
+            <!-- Dashboard Content -->
+            <div id="dashboard-content" class="tab-content active">
+                <!-- Stats Grid -->
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-text">
+                                <h3>Total Inventory</h3>
+                                <p data-stat="dashboardTotalInventory">Loading...</p>
+                                <div class="stat-trend">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                    </svg>
+                                    Generated from live data
+                                </div>
+                            </div>
+                            <div class="stat-icon bg-purple">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-text">
+                                <h3>Low Stock Items</h3>
+                                <p data-stat="dashboardLowStock">Loading...</p>
+                            </div>
+                            <div class="stat-icon bg-yellow">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-text">
+                                <h3>Today's Sales</h3>
+                                <p data-stat="dashboardTodaysSales">Loading...</p>
+                                <div class="stat-trend">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                    </svg>
+                                    From real-time sales data
+                                </div>
+                            </div>
+                            <div class="stat-icon bg-green">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-text">
+                                <h3>Active Suppliers</h3>
+                                <p data-stat="dashboardActiveSuppliers">Loading...</p>
+                            </div>
+                            <div class="stat-icon bg-blue">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Weekly Sales</h3>
+                    </div>
+                    <div class="chart-content">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Recent Activity</h3>
+                        <button class="text-purple-600 hover:text-purple-700 text-sm font-medium">View All</button>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background-color: #f9fafb; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <div style="width: 0.5rem; height: 0.5rem; background-color: #8B5CF6; border-radius: 50%;"></div>
+                            <div style="flex: 1;">
+                                <p style="font-weight: 500; font-size: 0.875rem; color: #111827;">Received 500L Barley</p>
+                                <p style="font-size: 0.75rem; color: #6B7280;">2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-item" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background-color: #f9fafb; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <div style="width: 0.5rem; height: 0.5rem; background-color: #8B5CF6; border-radius: 50%;"></div>
+                            <div style="flex: 1;">
+                                <p style="font-weight: 500; font-size: 0.875rem; color: #111827;">Sold 24 bottles JENSAR Single Malt</p>
+                                <p style="font-size: 0.75rem; color: #6B7280;">4 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-item" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background-color: #f9fafb; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                            <div style="width: 0.5rem; height: 0.5rem; background-color: #8B5CF6; border-radius: 50%;"></div>
+                            <div style="flex: 1;">
+                                <p style="font-weight: 500; font-size: 0.875rem; color: #111827;">Bottled 120 bottles Premium Whiskey</p>
+                                <p style="font-size: 0.75rem; color: #6B7280;">6 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-item" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background-color: #f9fafb; border-radius: 0.5rem;">
+                            <div style="width: 0.5rem; height: 0.5rem; background-color: #F59E0B; border-radius: 50%;"></div>
+                            <div style="flex: 1;">
+                                <p style="font-weight: 500; font-size: 0.875rem; color: #111827;">Low Stock Alert: Oak Barrels (3 remaining)</p>
+                                <p style="font-size: 0.75rem; color: #6B7280;">8 hours ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Content -->
+            <div id="inventory-content" class="tab-content" style="display: none;">
+                <div class="inventory-header">
+                    <h2 style="font-size: 1.5rem; font-weight: 700; color: #111827;">Inventory Management</h2>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div class="search-container">
+                            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            <input type="text" class="search-input" placeholder="Search inventory..." aria-label="Search inventory items">
+                        </div>
+                        <button class="btn btn-primary" aria-label="Add new inventory item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            Add Item
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Category</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Barley</td>
+                                <td><span class="badge badge-purple">Raw Material</span></td>
+                                <td>1,200 L</td>
+                                <td><span class="badge badge-success">In Stock</span></td>
+                                <td class="table-actions">
+                                    <button aria-label="Edit Barley item">Edit</button>
+                                    <button aria-label="Delete Barley item">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Yeast</td>
+                                <td><span class="badge badge-purple">Raw Material</span></td>
+                                <td>45 kg</td>
+                                <td><span class="badge badge-warning">Low Stock</span></td>
+                                <td class="table-actions">
+                                    <button aria-label="Edit Yeast item">Edit</button>
+                                    <button aria-label="Delete Yeast item">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>JENSAR Single Malt</td>
+                                <td><span class="badge badge-green">Finished Product</span></td>
+                                <td>87 bottles</td>
+                                <td><span class="badge badge-success">In Stock</span></td>
+                                <td class="table-actions">
+                                    <button aria-label="Edit JENSAR Single Malt item">Edit</button>
+                                    <button aria-label="Delete JENSAR Single Malt item">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Premium Whiskey</td>
+                                <td><span class="badge badge-green">Finished Product</span></td>
+                                <td>124 bottles</td>
+                                <td><span class="badge badge-success">In Stock</span></td>
+                                <td class="table-actions">
+                                    <button aria-label="Edit Premium Whiskey item">Edit</button>
+                                    <button aria-label="Delete Premium Whiskey item">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Oak Barrels</td>
+                                <td><span class="badge badge-purple">Equipment</span></td>
+                                <td>3 units</td>
+                                <td><span class="badge badge-warning">Low Stock</span></td>
+                                <td class="table-actions">
+                                    <button aria-label="Edit Oak Barrels item">Edit</button>
+                                    <button aria-label="Delete Oak Barrels item">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Generic Tab Content -->
+            <div id="suppliers-content" class="tab-content" style="display: none;">
+                <div class="generic-tab">
+                    <div class="generic-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                        </svg>
+                    </div>
+                    <h2 class="generic-title">Suppliers Management</h2>
+                    <p class="generic-desc">Record and manage your supplier relationships, track grain and barrel purchases, and maintain supplier contact information for JENSAR Distillery operations.</p>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </div>
+
+            <div id="sales-content" class="tab-content" style="display: none;">
+                <div class="generic-tab">
+                    <div class="generic-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="generic-title">Sales Management</h2>
+                    <p class="generic-desc">Record customer sales of JENSAR premium spirits, manage distributor orders, and track revenue with our comprehensive sales system.</p>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </div>
+
+            <div id="production-content" class="tab-content" style="display: none;">
+                <div class="generic-tab">
+                    <div class="generic-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="generic-title">Production Tracking</h2>
+                    <p class="generic-desc">Record whiskey distillation batches, track aging processes, and monitor raw material usage for JENSAR Distillery's premium spirit production.</p>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </div>
+
+            <div id="reports-content" class="tab-content" style="display: none;">
+                <div class="generic-tab">
+                    <div class="generic-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="generic-title">Reports & Analytics</h2>
+                    <p class="generic-desc">Generate daily and monthly summaries with detailed analytics on production volumes, sales performance, and inventory levels for JENSAR Distillery.</p>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2025 JENSAR Distillery. All rights reserved.</p>
+                <div class="offline-indicator">
+                    <span>Offline Mode Ready</span>
+                    <svg class="offline-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/app.js"></script>
+</body>
+</html>

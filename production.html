@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Tracking - JENSAR Distillery</title>
+    <meta name="description" content="Track whiskey production and aging processes">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#8B5CF6">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <svg class="logo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+                <span>JENSAR Distillery</span>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" id="offline-btn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </button>
+                <a href="/index.html" class="header-btn" title="Back to Dashboard">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="page-header">
+            <h1 style="font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem;">Production Tracking</h1>
+            <p style="color: #6B7280; margin-bottom: 1.5rem;">Monitor whiskey distillation batches, aging processes, and material consumption</p>
+        </div>
+
+        <!-- Production Stats -->
+        <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-bottom: 2rem;">
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-text">
+                        <h3>Active Batches</h3>
+                        <p data-stat="activeBatches">Loading...</p>
+                        <div class="stat-trend">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                            In-Progress batches
+                        </div>
+                    </div>
+                    <div class="stat-icon bg-purple">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-text">
+                        <h3>Bottled This Month</h3>
+                        <p data-stat="bottledThisMonth">Loading...</p>
+                        <div class="stat-trend">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                            Calculated from production data
+                        </div>
+                    </div>
+                    <div class="stat-icon bg-green">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-text">
+                        <h3>Aging Inventory</h3>
+                        <p data-stat="agingInventory">Loading...</p>
+                    </div>
+                    <div class="stat-icon bg-yellow">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Production Header -->
+        <div class="inventory-header">
+            <h2 style="font-size: 1.5rem; font-weight: 700; color: #111827;">Active Production Batches</h2>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <div class="search-container">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search batches..." aria-label="Search production batches">
+                </div>
+                <button class="btn btn-primary" aria-label="Start new production batch">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Start Batch
+                </button>
+            </div>
+        </div>
+
+        <!-- Production Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Batch ID</th>
+                        <th>Product</th>
+                        <th>Raw Materials Used</th>
+                        <th>Volume (L)</th>
+                        <th>Start Date</th>
+                        <th>Stage</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#BATCH-001</td>
+                        <td>JENSAR Single Malt</td>
+                        <td>Barley, Yeast</td>
+                        <td>500</td>
+                        <td>2024-01-01</td>
+                        <td><span class="badge badge-purple">Distillation</span></td>
+                        <td><span class="badge badge-warning">In Progress</span></td>
+                        <td class="table-actions">
+                            <button aria-label="View batch #BATCH-001">View</button>
+                            <button aria-label="Delete batch #BATCH-001">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#BATCH-002</td>
+                        <td>Premium Whiskey</td>
+                        <td>Barley, Yeast, Oak</td>
+                        <td>800</td>
+                        <td>2023-12-15</td>
+                        <td><span class="badge badge-green">Aging</span></td>
+                        <td><span class="badge badge-warning">In Progress</span></td>
+                        <td class="table-actions">
+                            <button aria-label="View batch #BATCH-002">View</button>
+                            <button aria-label="Delete batch #BATCH-002">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#BATCH-003</td>
+                        <td>JENSAR Single Malt</td>
+                        <td>Barley, Yeast</td>
+                        <td>600</td>
+                        <td>2023-11-20</td>
+                        <td><span class="badge badge-blue">Aging</span></td>
+                        <td><span class="badge badge-warning">In Progress</span></td>
+                        <td class="table-actions">
+                            <button aria-label="View batch #BATCH-003">View</button>
+                            <button aria-label="Delete batch #BATCH-003">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#BATCH-004</td>
+                        <td>Premium Whiskey</td>
+                        <td>Barley, Yeast, Oak</td>
+                        <td>700</td>
+                        <td>2024-01-05</td>
+                        <td><span class="badge badge-purple">Distillation</span></td>
+                        <td><span class="badge badge-warning">In Progress</span></td>
+                        <td class="table-actions">
+                            <button aria-label="View batch #BATCH-004">View</button>
+                            <button aria-label="Delete batch #BATCH-004">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Production Modal -->
+    <div id="production-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Start Production Batch</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="production-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="production-product">Product *</label>
+                        <input type="text" id="production-product" required placeholder="e.g., JENSAR Single Malt">
+                    </div>
+                    <div class="form-group">
+                        <label for="production-materials">Raw Materials *</label>
+                        <input type="text" id="production-materials" required placeholder="e.g., Barley, Yeast, Oak">
+                    </div>
+                    <div class="form-group">
+                        <label for="production-volume">Volume (L) *</label>
+                        <input type="number" id="production-volume" required placeholder="500">
+                    </div>
+                    <div class="form-group">
+                        <label for="production-date">Start Date *</label>
+                        <input type="date" id="production-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="production-stage">Stage *</label>
+                        <select id="production-stage" required>
+                            <option value="Distillation">Distillation</option>
+                            <option value="Fermentation">Fermentation</option>
+                            <option value="Aging">Aging</option>
+                            <option value="Bottling">Bottling</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="production-status">Status *</label>
+                        <select id="production-status" required>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                            <option value="On Hold">On Hold</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal(document.getElementById('production-modal'))">Cancel</button>
+                    <button type="submit" class="btn-submit">Start Batch</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2024 JENSAR Distillery. All rights reserved.</p>
+                <div class="offline-indicator">
+                    <span>Offline Mode Ready</span>
+                    <svg class="offline-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/app.js"></script>
+</body>
+</html>
